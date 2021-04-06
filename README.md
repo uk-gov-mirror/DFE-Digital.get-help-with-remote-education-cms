@@ -29,8 +29,6 @@ Setup a `.env` file to hold environment variables and fill in the missing values
 
 `cp .env.example .env`
 
-add development database to .env: govuk_rails_boilerplate_development
-
 ### To run the application locally with docker:
 
 NOTE: Ensure no instances of PostgreSQL are running in the background as this can cause conflicts when attempting to run the docker instance of PostgreSQL
