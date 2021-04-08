@@ -1,16 +1,16 @@
 # 4
 
-Feature: EYFS - Help for early years providers - Links
+Feature: EYFS - Get help with remote education - Links
 
   Background:
 
     Given "PVI Practitioner" user
-    When user proceeds to "Help for early years providers and professionals" page
+    When user proceeds to "Get help with remote education and professionals" page
 
 
-  Scenario:  Help for early years providers and professionals page body - Links
+  Scenario:  Get help with remote education and professionals page body - Links
 
-    Then page has heading "Help for early years providers and professionals"
+    Then page has heading "Get help with remote education and professionals"
     And the following "links" are available:
       | Communication and language                  |
       | Physical development                        |
@@ -24,7 +24,7 @@ Feature: EYFS - Help for early years providers - Links
       | Learn about the new changes and what it means for your practice.                                              |
 
 
-  Scenario:  Help for early years providers and professionals footer - Links
+  Scenario:  Get help with remote education and professionals footer - Links
 
     Then following is "displayed":
       | Get help to improve your practice                            |
@@ -44,7 +44,7 @@ Feature: EYFS - Help for early years providers - Links
       | Development matters    |
 
 
-  Scenario:  Help for early years providers and professionals - Pandemic notice
+  Scenario:  Get help with remote education and professionals - Pandemic notice
 
     Then following is "displayed":
       | Stay up to date with GOV.UK |
@@ -52,7 +52,7 @@ Feature: EYFS - Help for early years providers - Links
       | Sign up to get emails when we change any coronavirus information on the GOV.UK website |
 
 
-  Scenario:  Help for early years providers and professionals - Social media
+  Scenario:  Get help with remote education and professionals - Social media
 
     Then following is "displayed":
       | Share this page |
@@ -64,7 +64,7 @@ Feature: EYFS - Help for early years providers - Links
       | Twitter   |
 
 
-  Scenario:  Help for early years providers and professionals - Back button/link
+  Scenario:  Get help with remote education and professionals - Back button/link
 
       # GDS https://design-system.service.gov.uk/components/back-link/
       # When not to use this component:
