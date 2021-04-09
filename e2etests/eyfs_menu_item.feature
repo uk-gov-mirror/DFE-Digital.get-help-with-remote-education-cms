@@ -5,7 +5,7 @@ Feature: EYFS - Menu Item - Links
   Background:
 
     Given "PVI Practitioner" user
-    When user proceeds to "Help for early years providers and professionals" page
+    When user proceeds to "Get help with remote education and professionals" page
     When "Menu" is "expanded"
 
 
