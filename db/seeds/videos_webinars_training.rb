@@ -4,6 +4,18 @@
 
 markdown_for_videos_webinars_training = <<-MARKDOWN_FOR_VIDEOS_WEBINARS_TRAINING
 
+$Accordion
+$Heading
+#### Heading
+$EndHeading
+$Summary
+## Summary
+$EndSummary
+$Content
+### Content
+$EndContent
+$EndAccordion
+
 A collection of video resources and training to help you with your remote learning provision.
 
 Safeguarding

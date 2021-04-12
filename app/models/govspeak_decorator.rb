@@ -5,6 +5,32 @@ class GovspeakDecorator < DelegateClass(Govspeak::Document)
     optional_title = title ? %(title="#{title}") : ""
     %(<div class="govspeak-embed-container"><iframe class="govspeak-embed-video" src="#{embed_url}" #{optional_title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>)
   end
+  Govspeak::Document.extension("Accordion", /\$Accordion\s*$(.*?)\s*\$EndAccordion/m) do |body|
+    index = 1
+    accordion_index = 1
+    # accordion_index = self.accordion_index
+    # self.accordion_index += 1
+    lines = []
+    body.scan(/\$Heading\s*(.*?)\s*\$EndHeading\s*\$Summary\s*(.*?)\s*\$EndSummary\s*\$Content\s*(.*?)\s*\$EndContent/m) do |heading, summary, content|
+      if summary.present?
+        summary = %(<div>#{summary}</div>)
+      end
+      lines << %(<div class="govuk-accordion__section ">)
+      lines << %(<div class="govuk-accordion__section-header">)
+      lines << %(<h2 class="govuk-accordion__section-heading">)
+      lines << %(<span class="govuk-accordion__section-button" id="accordion-#{accordion_index}-heading-#{index}">#{heading}</span>)
+      lines << %(</h2>)
+      lines << summary
+      lines << %(</div>)
+      lines << %(<div id="accordion-#{accordion_index}-content-#{index}" class="govuk-accordion__section-content" aria-labelledby="accordion-#{accordion_index}-heading-#{index}">)
+      lines << %(<div class='govuk-body'>#{content}</div>)
+      lines << %(</div>)
+      lines << %(</div>)
+      index = index + 1
+    end
+    %(<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-#{accordion_index}">#{lines.join}</div>)
+  end
+
 
   def to_html
     @to_html ||= begin
@@ -69,7 +95,14 @@ class GovspeakDecorator < DelegateClass(Govspeak::Document)
         transformers << ImageSourceWhitelister.new(@allowed_image_hosts)
       end
 
-      Sanitize.clean(@dirty_html, Sanitize::Config.merge(sanitize_config(allowed_elements: allowed_elements), transformers: transformers))
+      Sanitize.clean(@dirty_html, Sanitize::Config.merge(
+        Sanitize::Config::RELAXED,
+        elements: allowed_elements,
+        attributes: {
+          "div" => [:data],
+        },
+        transformers: transformers
+      ))
     end
   end
 end
